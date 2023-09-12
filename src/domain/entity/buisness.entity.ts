@@ -1,7 +1,9 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BuisnessType } from "../enums/buisnessType.enum";
 import { ClubType } from "../enums/clubType.enum";
 import { BuisnessInformation } from "./buisnessInformation.entity";
+import { BuisnessMapping } from "./buisnessMapping.entity";
+import { BuisnessPlan } from "./buisnessPlan.entity";
 import { Status } from "./status.entity";
 
 @Entity()
@@ -16,6 +18,14 @@ export class Buisness {
     @OneToOne(() => BuisnessInformation)
     @JoinColumn({ name: 'id' })
     buisnessInformation: BuisnessInformation;
+
+    @ManyToOne(() => BuisnessMapping, buisnessMapping => buisnessMapping.buisness)
+    @JoinTable()
+    buisnessMapping: BuisnessMapping;
+
+    @OneToOne(() => BuisnessPlan)
+    @JoinColumn({ name: 'id' })
+    buisnessPlan: BuisnessPlan;
 
     @Column({
         type: 'varchar'
