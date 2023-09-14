@@ -1,5 +1,5 @@
 export enum Type {
-    I = '심사',
-    O = '선정',
-    N = '탈락'
+    judge = '심사',
+    choice = '선정',
+    fail = '탈락'
 }

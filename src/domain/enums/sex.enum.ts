@@ -1,4 +1,4 @@
 export enum Sex {
-    m = '남성',
-    f = '여성'
+    male = '남성',
+    female = '여성'
 }
