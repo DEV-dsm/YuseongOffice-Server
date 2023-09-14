@@ -1,17 +1,19 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
 import { Type } from "../enums/type.enum";
-import { Buisness } from "./buisness.entity";
+import { Business } from "./business.entity";
 
 @Entity()
 export class Status {
+    // 상태
+
     @PrimaryColumn({
         type: 'integer'
     })
     id: number;
 
-    @OneToOne(() => Buisness)
+    @OneToOne(() => Business)
     @JoinColumn({ name: 'id' })
-    buisness: Buisness;
+    buisness: Business;
 
     @Column({
         type: 'integer'

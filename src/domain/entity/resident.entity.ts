@@ -1,16 +1,18 @@
 import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { Sex } from "../enums/sex.enum";
-import { BuisnessMapping } from "./buisnessMapping.entity";
+import { BusinessMapping } from "./businessMapping.entity";
 
 @Entity()
 export class Resident {
+    // 주민
+
     @PrimaryColumn({
         type: 'varchar'
     })
     phone: string;
 
-    @OneToMany(() => BuisnessMapping, buisnessMapping => buisnessMapping.resident)
-    buisnessMappping: BuisnessMapping;
+    @OneToMany(() => BusinessMapping, businessMapping => businessMapping.resident)
+    businessMappping: BusinessMapping;
 
     @Column({
         type: 'varchar'
@@ -32,5 +34,3 @@ export class Resident {
     })
     location: string;
 }
-
-// sex birth location

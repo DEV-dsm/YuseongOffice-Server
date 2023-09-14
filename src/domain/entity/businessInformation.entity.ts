@@ -1,16 +1,18 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
-import { Buisness } from "./buisness.entity";
+import { Business } from "./business.entity";
 
 @Entity()
-export class BuisnessInformation {
+export class BusinessInformation {
+    // 단체소개서 4-2
+
     @PrimaryColumn({
         type: 'integer'
     })
     id: number;
 
-    @OneToOne(() => Buisness)
+    @OneToOne(() => Business)
     @JoinColumn({ name: 'id' })
-    buisness: Buisness;
+    business: Business;
 
     @Column({
         type: 'varchar'
@@ -47,7 +49,7 @@ export class BuisnessInformation {
     @Column({
         type: 'text'
     })
-    mainBuisness: string;
+    mainBusiness: string;
 
     @Column({
         type: 'boolean',
@@ -64,7 +66,7 @@ export class BuisnessInformation {
     @Column({
         type: 'text'
     })
-    mainActivities: string;
+    mainActivity: string;
 
     @Column({
         type: 'boolean',

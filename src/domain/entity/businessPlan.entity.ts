@@ -1,21 +1,23 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
-import { Buisness } from "./buisness.entity";
+import { Business } from "./business.entity";
 
 @Entity()
-export class BuisnessPlan {
+export class BusinessPlan {
+    // 사업계획서 4-5
+
     @PrimaryColumn({
         type: 'integer'
     })
     id: number;
 
-    @OneToOne(() => Buisness)
+    @OneToOne(() => Business)
     @JoinColumn({ name: 'id' })
-    buisness: Buisness;
+    business: Business;
 
     @Column({
         type: 'varchar'
     })
-    buisnessName: string;
+    businessName: string;
 
     @Column({
         type: 'text'

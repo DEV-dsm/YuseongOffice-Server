@@ -1,19 +1,21 @@
 import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
-import { Buisness } from "./buisness.entity";
+import { Business } from "./business.entity";
 import { Resident } from "./resident.entity";
 
 @Entity()
-export class BuisnessMapping {
+export class BusinessMapping {
+    // 주민참여명부 4-3
+
     @PrimaryColumn({
         type: 'integer'
     })
-    buisnessID: number; 
+    businessID: number; 
 
-    @OneToMany(() => Buisness, buisness => buisness.id)
-    buisness: Buisness;
+    @OneToMany(() => Business, business => business.id)
+    business: Business;
 
     @PrimaryColumn({
-        type: 'string'
+        type: 'varchar'
     })
     phone: string;
 

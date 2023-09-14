@@ -1,13 +1,15 @@
 import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BuisnessType } from "../enums/buisnessType.enum";
 import { ClubType } from "../enums/clubType.enum";
-import { BuisnessInformation } from "./buisnessInformation.entity";
-import { BuisnessMapping } from "./buisnessMapping.entity";
-import { BuisnessPlan } from "./buisnessPlan.entity";
+import { BusinessInformation } from "./businessInformation.entity";
+import { BusinessMapping } from "./businessMapping.entity";
+import { BusinessPlan } from "./businessPlan.entity";
 import { Status } from "./status.entity";
 
 @Entity()
-export class Buisness {
+export class Business {
+    // 사업계획서 4-1
+
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -15,22 +17,22 @@ export class Buisness {
     @JoinColumn({ name: 'id' })
     status: Status;
 
-    @OneToOne(() => BuisnessInformation)
+    @OneToOne(() => BusinessInformation)
     @JoinColumn({ name: 'id' })
-    buisnessInformation: BuisnessInformation;
+    businessInformation: BusinessInformation;
 
-    @ManyToOne(() => BuisnessMapping, buisnessMapping => buisnessMapping.buisness)
+    @ManyToOne(() => BusinessMapping, businessMapping => businessMapping.business)
     @JoinTable()
-    buisnessMapping: BuisnessMapping;
+    businessMapping: BusinessMapping;
 
-    @OneToOne(() => BuisnessPlan)
+    @OneToOne(() => BusinessPlan)
     @JoinColumn({ name: 'id' })
-    buisnessPlan: BuisnessPlan;
+    businessPlan: BusinessPlan;
 
     @Column({
         type: 'varchar'
     })
-    buisnessType: BuisnessType;
+    businessType: BuisnessType;
 
     @Column({
         type: 'varchar'
@@ -52,12 +54,12 @@ export class Buisness {
     @Column({
         type: 'varchar'
     })
-    buisnessName: string;
+    businessName: string;
 
     @Column({
         type: 'varchar'
     })
-    buisnessLocation: string;
+    businessLocation: string;
 
     @Column({
         type: 'integer',
