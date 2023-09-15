@@ -1,5 +1,9 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
+import { BudgetDetail } from "./budgetDetail.entity";
+import { BudgetPlan } from "./budgetPlan.entity";
 import { Business } from "./business.entity";
+import { BusinessDetail } from "./businessDetail.entity";
+import { LocalResource } from "./localResource.entity";
 
 @Entity()
 export class BusinessPlan {
@@ -10,9 +14,36 @@ export class BusinessPlan {
     })
     id: number;
 
-    @OneToOne(() => Business)
+    @OneToOne(
+        () => Business,
+        business => business.businessPlan
+    )
     @JoinColumn({ name: 'id' })
     business: Business;
+
+    @OneToMany(
+        () => BusinessDetail,
+        businessDetail => businessDetail.businessPaln
+    )
+    businessDetail: BusinessDetail;
+
+    @OneToMany(
+        () => LocalResource,
+        localResource => localResource.businessPlan
+    )
+    localResource: LocalResource;
+
+    @OneToOne(
+        () => BudgetPlan,
+        budgetPlan => budgetPlan.businessPlan
+    )
+    budgetPlan: BudgetPlan;
+
+    @OneToMany(
+        () => BudgetDetail,
+        budgetDetail => budgetDetail.businessPlan
+    )
+    budgetDetail: BudgetDetail;
 
     @Column({
         type: 'varchar'

@@ -11,7 +11,10 @@ export class Resident {
     })
     phone: string;
 
-    @OneToMany(() => BusinessMapping, businessMapping => businessMapping.resident)
+    @OneToMany(
+        () => BusinessMapping, 
+        businessMapping => businessMapping.resident
+    )
     businessMappping: BusinessMapping;
 
     @Column({

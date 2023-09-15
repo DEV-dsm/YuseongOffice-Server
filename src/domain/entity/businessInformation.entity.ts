@@ -1,5 +1,8 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 import { Business } from "./business.entity";
+import { OperationDetail } from "./operationDetail.entity";
+import { RegularyMeeting } from "./regularyMeeting.entity";
+import { RunningRule } from "./runningRule.entity";
 
 @Entity()
 export class BusinessInformation {
@@ -10,9 +13,30 @@ export class BusinessInformation {
     })
     id: number;
 
-    @OneToOne(() => Business)
+    @OneToOne(
+        () => Business,
+        business => business.businessInformation
+    )
     @JoinColumn({ name: 'id' })
     business: Business;
+
+    @OneToOne(
+        () => RegularyMeeting,
+        regularyMeeting => regularyMeeting.businessInformation
+    )
+    regularyMeeting: RegularyMeeting;
+
+    @OneToMany(
+        () => RunningRule,
+        runningRule => runningRule.businessInformation
+    )
+    runningRule: RunningRule;
+
+    @OneToMany(
+        () => OperationDetail,
+        operationDetail => operationDetail.businessInformation
+    )
+    operationDetail: OperationDetail;
 
     @Column({
         type: 'varchar'

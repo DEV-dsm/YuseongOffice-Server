@@ -9,9 +9,13 @@ export class BusinessMapping {
     @PrimaryColumn({
         type: 'integer'
     })
-    businessID: number; 
+    id: number; 
 
-    @OneToMany(() => Business, business => business.id)
+    @ManyToOne(
+        () => Business, 
+        business => business.businessMapping
+    )
+    @JoinColumn({ name: 'id' })
     business: Business;
 
     @PrimaryColumn({
@@ -19,8 +23,11 @@ export class BusinessMapping {
     })
     phone: string;
 
-    @ManyToOne(() => Resident, resident => resident.phone)
-    @JoinTable()
+    @ManyToOne(
+        () => Resident, 
+        resident => resident.phone
+    )
+    @JoinColumn({ name: 'phone' })
     resident: Resident;
 
     @Column({

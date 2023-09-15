@@ -11,7 +11,10 @@ export class Status {
     })
     id: number;
 
-    @OneToOne(() => Business)
+    @OneToOne(
+        () => Business,
+        business => business.status
+    )
     @JoinColumn({ name: 'id' })
     buisness: Business;
 

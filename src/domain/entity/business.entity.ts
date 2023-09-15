@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BuisnessType } from "../enums/buisnessType.enum";
 import { ClubType } from "../enums/clubType.enum";
 import { BusinessInformation } from "./businessInformation.entity";
@@ -13,20 +13,28 @@ export class Business {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToOne(() => Status)
-    @JoinColumn({ name: 'id' })
+    @OneToOne(
+        () => Status,
+        status => status.buisness
+    )
     status: Status;
 
-    @OneToOne(() => BusinessInformation)
-    @JoinColumn({ name: 'id' })
+    @OneToOne(
+        () => BusinessInformation,
+        businessInformation => businessInformation.business
+    )
     businessInformation: BusinessInformation;
 
-    @ManyToOne(() => BusinessMapping, businessMapping => businessMapping.business)
-    @JoinTable()
+    @OneToMany(
+        () => BusinessMapping, 
+        businessMapping => businessMapping.business
+    )
     businessMapping: BusinessMapping;
 
-    @OneToOne(() => BusinessPlan)
-    @JoinColumn({ name: 'id' })
+    @OneToOne(
+        () => BusinessPlan,
+        businessPlan => businessPlan.business
+    )
     businessPlan: BusinessPlan;
 
     @Column({
