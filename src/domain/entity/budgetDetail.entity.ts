@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BusinessPlan } from "./businessPlan.entity";
 
 @Entity()
@@ -12,6 +12,7 @@ export class BudgetDetail {
         () => BusinessPlan,
         businessPlan => businessPlan.budgetDetail
     )
+    @JoinColumn({ name: 'id' })
     businessPlan: BusinessPlan;
     
     @Column({

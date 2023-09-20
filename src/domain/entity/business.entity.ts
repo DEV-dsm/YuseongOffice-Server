@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BuisnessType } from "../enums/buisnessType.enum";
 import { ClubType } from "../enums/clubType.enum";
 import { BusinessInformation } from "./businessInformation.entity";
