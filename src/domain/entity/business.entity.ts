@@ -38,7 +38,9 @@ export class Business {
     businessPlan: BusinessPlan;
 
     @Column({
-        type: 'varchar'
+        type: 'enum',
+        enum: BuisnessType,
+        default: BuisnessType.yuseongMagic
     })
     businessType: BuisnessType;
 

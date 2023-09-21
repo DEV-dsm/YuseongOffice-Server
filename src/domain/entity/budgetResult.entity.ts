@@ -28,7 +28,9 @@ export class BudgetResult {
     burden: number;
 
     @Column({
-        type: 'varchar'
+        type: 'enum',
+        enum: Key,
+        default: Key.budgetSum
     })
     key: Key;
 }

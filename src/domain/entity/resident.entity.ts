@@ -23,7 +23,9 @@ export class Resident {
     name: string;
 
     @Column({
-        type: 'varchar'
+        type: 'enum',
+        enum: Sex,
+        default: Sex.male
     })
     sex: Sex;
 

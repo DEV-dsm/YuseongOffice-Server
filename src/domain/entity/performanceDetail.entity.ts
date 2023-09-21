@@ -48,7 +48,9 @@ export class PerformanceDetail {
     etc: number;
 
     @Column({
-        type: 'varchar'
+        type: 'enum',
+        enum: Total,
+        default: Total.num
     })
     total: Total;
 }
