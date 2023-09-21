@@ -18,22 +18,30 @@ export class AchievementStatus {
     performanceResult: PerformanceResult;
 
     @Column({
-        type: 'varchar'
+        type: 'enum',
+        enum: Amount,
+        default: Amount.nothing
     })
     changedMember: Amount;
 
     @Column({
-        type: 'varchar'
+        type: 'enum',
+        enum: Amount,
+        default: Amount.nothing
     })
     increaseMain: Amount;
 
     @Column({
-        type: 'varchar'
+        type: 'enum',
+        enum: Amount,
+        default: Amount.nothing
     })
     increaseNew: Amount;
 
     @Column({
-        type: 'varchar'
+        type: 'enum',
+        enum: Related,
+        default: Related.normal
     })
     changedRelation: Related;
 }

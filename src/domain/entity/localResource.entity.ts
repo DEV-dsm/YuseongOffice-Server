@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Type } from "../enums/type.enum";
 import { BusinessPlan } from "./businessPlan.entity";
 
 @Entity()
@@ -18,10 +19,12 @@ export class LocalResource {
     businessPlan: BusinessPlan;
 
     @Column({
-        type: 'varchar',
+        type: 'enum',
+        enum: Type,
+        default: Type.judge,
         nullable: true
     })
-    type: string;
+    type: Type;
 
     @Column({
         type: 'varchar'
